@@ -1,9 +1,20 @@
 const http = require("http");
 const requestHandler = require('./routes');
 const assingmentHandler=require('./Assignment-1/assignmentroutes');
+const express= require('express');
 
+const app =express();
 
-const server = http.createServer(assingmentHandler);
+ app.use((req,res,next)=>{
+   console.log('In the middleware')
+   next();
+ })
+
+ app.use((req,res,next)=>{
+  console.log('In the another middleware')
+})
+
+const server = http.createServer(app);
   // console.log(req.url, req.method,req.headers);
   // process.exit(););
 
